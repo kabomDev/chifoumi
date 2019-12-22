@@ -1,0 +1,29 @@
+main{
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.buttons{
+  display: flex;
+  justify-content: center;
+  margin: 3em;
+}
+
+.buttons button{
+  margin: 1em;
+}
+
+.replay{
+  margin: 0 auto;
+  padding: 1em;
+  width: 50%;
+}
+
+.block{
+  display: inline-block;
+}
+
+.hidden{
+  display: none;
+}

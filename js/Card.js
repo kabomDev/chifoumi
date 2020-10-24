@@ -1,7 +1,35 @@
 class Card
 {
-  cards = ["pierre","feuille","ciseaux"];
-  aiCard = new Array;
+
+  constructor()
+  {
+    this.cards = ["pierre","feuille","ciseaux"];
+    this.aiCard = [];
+    this.content = document.querySelector('.content');
+    this.p = document.createElement('p');
+    this.myCards = document.querySelectorAll('.block-hover');
+    this.aiCards = document.querySelectorAll('.ai-card');
+  }
+
+
+  init()
+  {
+    this.content.innerHTML = " ";
+    document.querySelector('#playing').classList.replace('block','hidden');
+
+    this.aiCard = [];
+    this.choice = "";
+    this.myCards.forEach(element => {
+      element.classList.remove('disabled');
+      element.classList.remove('opac');
+    })
+
+    this.aiCards.forEach(element => {
+      element.classList.remove('disabled');
+      element.classList.remove('opac');
+    })
+
+  }
 
   randomAiCard()
   {
@@ -9,30 +37,43 @@ class Card
     this.aiCard = this.cards[randomCard]; //carte de l'IA
   }
 
-  init(choice)
+  choiceCard(choice)
   {
     this.choice = choice;
     this.randomAiCard();
-    const content = document.querySelector('.content');
-    let p = document.createElement('p');
-
-    content.innerHTML = " ";
-
+    
     if((choice == "pierre" && this.aiCard == "feuille" ) || (choice == "feuille" && this.aiCard == "ciseaux" ) ||(choice == "ciseaux" && this.aiCard == "pierre"))
-    {
-        p.innerHTML = `vous avez choisis ${choice}, l'ordi a choisis ${this.aiCard}, vous avez perdu !`;
-        content.appendChild(p);
+    {  
+        this.p.innerHTML = `<span>perdu<span> !`;
+        this.content.appendChild(this.p);
     }
     else if((choice == "pierre" && this.aiCard == "pierre") || (choice == "feuille" && this.aiCard == "feuille") || (choice == "ciseaux" && this.aiCard == "ciseaux"))
     {
-        p.innerHTML = `vous avez choisis ${choice}, l'ordi a choisis ${this.aiCard}, vous êtes à égalité !`;
-        content.appendChild(p);
+      this.p.innerHTML = `<span>égalité</span> !`;
+      this.content.appendChild(this.p);
     }else{
-        p.innerHTML =`vous avez choisis ${choice}, l'ordi a choisis ${this.aiCard}, vous avez gagné !`;
-        content.appendChild(p);
+      this.p.innerHTML =`<span>gagné</span> !`;
+      this.content.appendChild(this.p);
     }
 
-    document.querySelector('.block').classList.replace('block', 'hidden');
+    this.myCards.forEach(element => {
+      element.classList.add('disabled');
+
+      if(element.alt === this.choice)
+      {
+        element.classList.add('opac');
+      }
+    })
+
+    this.aiCards.forEach(element => {
+      element.classList.add('disabled');
+      if(element.alt === this.aiCard)
+      {
+        element.classList.add('opac');
+      }
+    })
+
     document.querySelector('#playing').classList.replace('hidden','block');
   }
+
 }

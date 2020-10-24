@@ -1,14 +1,19 @@
 "use strict";
 
 const card = new Card;
+const cards = document.querySelectorAll('.block-hover');
 
-document.querySelector('.buttons').addEventListener('click', function(event)
+cards.forEach(element =>
 {
-  const choice = event.target.value;
-  card.init(choice);
-})
+  element.addEventListener('click', function(event)
+  {
+    const choice = event.target.dataset.target;
+    card.init();
+    card.choiceCard(choice);
+  })
+});
 
 document.querySelector('#playing').addEventListener('click', function()
 {
-  document.location.reload(true);
+  card.init();
 })

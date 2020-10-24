@@ -4,6 +4,11 @@ main{
   text-align: center;
 }
 
+img{
+  margin: 1em;
+  cursor: pointer;
+}
+
 .buttons{
   display: flex;
   justify-content: center;
@@ -20,10 +25,46 @@ main{
   width: 50%;
 }
 
+.replay button{
+  padding: 0.5em 1em;
+  background-color: orange;
+}
+
+.ai-card{
+  pointer-events: none;
+}
+
 .block{
   display: inline-block;
 }
 
+.block-hover:hover{
+  box-shadow: 2px 4px 8px 2px grey;
+}
+
+p{
+  font-size: 2em;
+  text-transform: uppercase;
+}
+
+span{
+  color: red;
+}
+
+/*===============================================*/
 .hidden{
   display: none;
+}
+
+.show{
+  display: block;
+}
+
+.disabled{
+  pointer-events: none;
+  opacity: 0.3;
+}
+
+.opac{
+  opacity: 1;
 }
